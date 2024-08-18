@@ -45,7 +45,8 @@ contract LendingBorrowingTest is Test {
         lendingBorrowing.requestLoan(1000 * 10 ** 18, 5, 3600);
         vm.stopPrank();
 
-        (address loanBorrower, uint256 amount, uint256 interestRate, uint256 duration, uint256 startTime, bool repaid) = lendingBorrowing.getLoanDetails(1);
+        (address loanBorrower, uint256 amount, uint256 interestRate, uint256 duration, uint256 startTime, bool repaid) =
+            lendingBorrowing.getLoanDetails(1);
 
         assertEq(loanBorrower, borrower);
         assertEq(amount, 1000 * 10 ** 18);
@@ -81,7 +82,8 @@ contract LendingBorrowingTest is Test {
         address ownerOfNFT = nft.ownerOf(1);
         assertEq(ownerOfNFT, borrower);
 
-        (address loanBorrower, uint256 amount, uint256 interestRate, uint256 duration, uint256 startTime, bool repaid) = lendingBorrowing.getLoanDetails(1);
+        (address loanBorrower, uint256 amount, uint256 interestRate, uint256 duration, uint256 startTime, bool repaid) =
+            lendingBorrowing.getLoanDetails(1);
         assertTrue(repaid);
         vm.stopPrank();
     }

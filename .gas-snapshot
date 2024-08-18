@@ -1,0 +1,6 @@
+CounterTest:testFuzz_SetNumber(uint256) (runs: 1001, μ: 31049, ~: 31288)
+CounterTest:test_Increment() (gas: 31303)
+LendingBorrowingTest:testCollateralizeNFT() (gas: 269631)
+LendingBorrowingTest:testFailRepayLoanAfterDuration() (gas: 347624)
+LendingBorrowingTest:testRepayLoan() (gas: 303105)
+LendingBorrowingTest:testRequestLoan() (gas: 198867)

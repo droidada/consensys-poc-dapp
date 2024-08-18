@@ -61,7 +61,7 @@ contract LendingBorrowing is ReentrancyGuard, Ownable, ERC721Holder {
 
         nft.safeTransferFrom(msg.sender, address(this), _tokenId);
         nftCollateral[_loanId] = _tokenId;
-        
+
         emit NFTCollateralized(_loanId, _tokenId);
     }
 
@@ -83,8 +83,25 @@ contract LendingBorrowing is ReentrancyGuard, Ownable, ERC721Holder {
         emit NFTReleased(_loanId, tokenId);
     }
 
-    function getLoanDetails(uint256 _loanId) external view returns (address borrower, uint256 amount, uint256 interestRate, uint256 duration, uint256 startTime, bool repaid)
+    function getLoanDetails(uint256 _loanId)
+        external
+        view
+        returns (
+            address borrower,
+            uint256 amount,
+            uint256 interestRate,
+            uint256 duration,
+            uint256 startTime,
+            bool repaid
+        )
     {
-        return (loans[_loanId].borrower, loans[_loanId].amount, loans[_loanId].interestRate, loans[_loanId].duration, loans[_loanId].startTime, loans[_loanId].repaid);
+        return (
+            loans[_loanId].borrower,
+            loans[_loanId].amount,
+            loans[_loanId].interestRate,
+            loans[_loanId].duration,
+            loans[_loanId].startTime,
+            loans[_loanId].repaid
+        );
     }
 }
