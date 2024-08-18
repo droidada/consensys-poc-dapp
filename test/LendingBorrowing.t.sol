@@ -101,5 +101,6 @@ contract LendingBorrowingTest is Test {
         vm.expectRevert("Loan duration exceeded");
         lendingBorrowing.repayLoan(1);
         vm.stopPrank();
+        vm.expectRevert();
     }
 }
