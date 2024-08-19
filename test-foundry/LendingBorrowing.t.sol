@@ -4,7 +4,7 @@ pragma solidity ^0.8.13;
 import "lib/forge-std/src/Test.sol";
 import "lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
 import "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol";
-import "../src/LendingBorrowing.sol";
+import "../contracts/LendingBorrowing.sol";
 
 contract ERC20Mock is ERC20 {
     constructor(string memory name, string memory symbol) ERC20("", "") {}

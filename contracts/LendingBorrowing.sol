@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
-import "lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol";
-import "lib/openzeppelin-contracts/contracts/token/ERC721/utils/ERC721Holder.sol";
-import "lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
-import "lib/openzeppelin-contracts/contracts/utils/ReentrancyGuard.sol";
-import "lib/openzeppelin-contracts/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract LendingBorrowing is ReentrancyGuard, Ownable, ERC721Holder {
     struct Loan {
@@ -39,6 +39,9 @@ contract LendingBorrowing is ReentrancyGuard, Ownable, ERC721Holder {
         require(_interestRate > 0, "Interest rate must be greater than 0");
         require(_duration > 0, "Duration must be greater than 0");
 
+        //TODO: request must come from owner
+        //TODO: check if collaterized before giving loan
+
         stablecoin.transferFrom(msg.sender, address(this), _amount);
 
         loanCounter++;
@@ -59,6 +62,7 @@ contract LendingBorrowing is ReentrancyGuard, Ownable, ERC721Holder {
         require(loan.borrower == msg.sender, "Not the borrower");
         require(!loan.repaid, "Loan already repaid");
 
+        //TODO: get loan value as 1/3rd value of NFT
         nft.safeTransferFrom(msg.sender, address(this), _tokenId);
         nftCollateral[_loanId] = _tokenId;
 
